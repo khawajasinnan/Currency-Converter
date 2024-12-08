@@ -51,7 +51,7 @@ select {
   transition: 0.5s;
 }
 #exchange_button:hover{
-  borde-color: rgb(236, 199, 96);
+  border-color: rgb(236, 199, 96);
   width: 350px;
   height: 50px;
   transition: 0.5s;  
