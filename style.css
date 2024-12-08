@@ -212,7 +212,7 @@ footer {
 }
 
 #history-table th {
-    background-color: #00539cff;
+    background-color: #5D5D81;
     color: #fff;
     font-weight: bold;
     position: sticky;
@@ -227,7 +227,7 @@ footer {
 #clear-history {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #00539cff;
+    background-color: #5D5D81;
     color: white;
     border: none;
     border-radius: 5px;
