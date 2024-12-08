@@ -2,78 +2,127 @@
 
 ## Introduction
 
-### System Introduction
-The Currency Converter is a web-based application designed to provide real-time currency exchange rates. It allows users to convert amounts between different currencies using the latest exchange rates from an external API.
+### System Overview
+The Currency Converter is a web-based application providing real-time exchange rates and additional features like visual analytics and conversion history tracking. Built with modern web technologies, the app ensures compatibility across devices and delivers a seamless user experience.
 
-### Background of the System
-This project aims to deliver a simple, user-friendly currency converter that updates exchange rates in real-time. It is built with modern web technologies, ensuring compatibility across various devices.
-
-### Objectives of the System
+### Objectives
 - Provide real-time currency exchange rates.
 - Convert amounts between multiple currencies.
-- Ensure a responsive and intuitive user interface.
-- Fetch and display the latest exchange rates using an external API.
+- Visualize exchange rate trends with interactive charts.
+- Track and manage conversion history.
 
-## Web interface
-![Currency-Converter](https://github.com/khawajasinnan/Currency-Converter/assets/156596296/cf1b8499-bda9-44c4-bdb8-2cfb19197dbc)
-It is the main interface of the currency converter opened in the browser respectively.
+---
 
-## Real time exchange
-![Real-time](https://github.com/khawajasinnan/Currency-Converter/assets/156596296/ca8f9067-ce55-485b-89f4-35653205d8eb)
-It shows real time exchange of the currency as 3 USD dollars has converted to PKR rupees and it also shows the real time difference betweem currencies.
+## Product Scope
 
-## Overall Description
-
-### Product Perspective
-The Currency Converter is a standalone web application that interacts with an external API to fetch real-time exchange rates. It features a clean and responsive design for seamless user experience across different devices.
-
-### Product Scope
 The application allows users to:
-- Enter an amount in one currency and convert it to another.
-- Select from a list of available currencies.
-- View the real-time exchange rates.
+- Enter an amount in one currency and convert it to another using real-time exchange rates.
+- Select from a comprehensive list of available currencies.
+- View a history of conversions, including timestamps and amounts.
+- Visualize currency exchange trends using interactive charts.
+- Operate seamlessly across various devices with a responsive user interface.
 
-### Product Functionality
-- **Real-time Exchange Rates:** Fetches current rates from an external API.
-- **Currency Conversion:** Converts amounts between selected currencies.
-- **Responsive Design:** Adapts to different screen sizes and devices.
+---
 
-### Users and Characteristics
-- **General Users:** Individuals needing quick currency conversions, such as travelers or online shoppers.
-- **Financial Professionals:** Users requiring accurate and up-to-date exchange rates.
+## Functional Requirements
 
-### Operating Environment
-The application is designed to run in modern web browsers, including Chrome, Firefox, Safari, and Edge. It requires an internet connection to fetch real-time exchange rates.
+- **Real-time Data Fetching**: Retrieves the latest exchange rates from an external API.
+- **Currency Conversion**: Allows users to input an amount and convert it to their desired currency.
+- **Currency Selection**: Provides dropdowns for selecting "From" and "To" currencies.
+- **Conversion History**: Saves and displays past conversion records, including date, time, and amounts.
+- **Visualization**: Displays currency trends in a chart format using Chart.js.
+- **Error Handling**: Informs users of invalid inputs or API issues via error messages.
 
-## Specific Requirements
+---
 
-### Functional Requirements
-- **Real-time Data Fetching:** Use an external API to get the latest exchange rates.
-- **Currency Selection:** Allow users to choose from a list of currencies.
-- **Amount Input:** Enable users to enter an amount to be converted.
-- **Conversion Display:** Show the converted amount based on the selected currencies.
+## Non-functional Requirements
 
-### External Interface Requirements
+- **Performance**: Ensure conversions and data fetching are completed within 5 seconds under normal network conditions.
+- **Usability**: Maintain a clean and intuitive user interface for ease of use.
+- **Reliability**: Ensure consistent performance across modern web browsers, such as Chrome, Firefox, Safari, and Edge.
+- **Scalability**: Design the system to accommodate additional features or API endpoints in the future.
+- **Security**: Use secure HTTPS communication for API interactions to protect data integrity.
 
-#### User Interfaces
-- **Home Page:** Displays the currency converter interface.
-- **Error Messages:** Provides feedback for invalid inputs or API errors.
+---
 
-## Other Non-functional Requirements
+## Key Features
 
-### Performance Requirements
-- Ensure that any transaction does not take more than 10 seconds.
+### Real-Time Currency Conversion
+- **Dynamic Exchange Rates**: Fetch the latest exchange rates via an external API.
+- **Simple Inputs**: Users can select currencies, input amounts, and view results instantly.
 
-### Safety and Security Requirements
-- Safeguard user data and ensure secure API communication.
+### Conversion History
+- **Tracking**: Records all conversions with date, time, input, and output.
+- **Management**: Users can view the history in a table format and clear it if needed.
 
-### Software Quality Attributes
-- **Usability:** Simple and intuitive user interface.
-- **Reliability:** Consistent performance across different devices.
-- **Maintainability:** Easily updateable to incorporate new features or API changes.
+### Visual Analytics
+- **Interactive Charts**: Integrated with Chart.js to display real-time or historical trends in currency rates.
 
-## Technologies Used
-- HTML
-- CSS
-- JavaScript
-- External API for exchange rates
+### Responsive Design
+- Optimized for various screen sizes and devices.
+
+---
+
+## Interface Screenshots
+
+### Main Interface
+![Main Interface](![image](https://github.com/user-attachments/assets/30ebe881-ff0e-4894-8b34-30f99fe18f7f)
+)
+
+### Conversion History
+![Conversion History](![image](https://github.com/user-attachments/assets/9c5656fb-145a-4887-82c3-1ed8b2557d86)
+)
+
+### Graphical Representation
+![Graphical Representation](![image](https://github.com/user-attachments/assets/9c5656fb-145a-4887-82c3-1ed8b2557d86)
+)
+
+---
+
+## Technical Details
+
+### Technologies Used
+- **Frontend**: HTML, CSS, JavaScript
+- **Visualization**: Chart.js
+- **Data Handling**: Local Storage (for history), Fetch API (for exchange rates)
+
+### Functionalities
+- **Real-time Updates**: Automatically fetches and displays current exchange rates.
+- **Conversion History**: Maintains a local record of user transactions.
+- **Error Handling**: Displays user-friendly error messages for invalid inputs or connectivity issues.
+
+---
+
+## Usage Instructions
+
+1. **Launching the App**:
+   - Open `index.html` in a browser.
+2. **Converting Currencies**:
+   - Enter the amount, select currencies, and click "Convert."
+3. **Viewing History**:
+   - Navigate to the "History" tab to view previous conversions.
+4. **Clearing History**:
+   - Click the "Clear History" button to reset the records.
+
+---
+
+## Future Enhancements
+
+- Multi-language support for global accessibility.
+- Historical exchange rate data for deeper financial analysis.
+- Export functionality for saving conversion history to a file.
+- Support for offline mode using cached exchange rates.
+
+---
+
+## Non-functional Quality Attributes
+
+- **Performance**: Fast data retrieval and processing.
+- **Scalability**: Code structure allows for the easy addition of new features or APIs.
+- **Security**: Encrypted API calls ensure safe data transmission.
+- **Reliability**: Tested for consistent performance across various platforms and browsers.
+- **Maintainability**: Modular code design facilitates updates and debugging.
+
+---
+
+Let me know if you need additional sections or further refinements!
