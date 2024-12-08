@@ -66,19 +66,19 @@ The application allows users to:
 ## Interface Screenshots
 
 ### Main Interface
-![Main Interface](![image](https://github.com/user-attachments/assets/a4720964-418e-464f-af26-f08a610d7338)
+![Main Interface](https://github.com/user-attachments/assets/a4720964-418e-464f-af26-f08a610d7338)
 )
 )
 
 ### Conversion History
-![Conversion History](![image](https://github.com/user-attachments/assets/945f9080-2064-43be-b919-6dd5eb1e38b7)
+![Conversion History](https://github.com/user-attachments/assets/945f9080-2064-43be-b919-6dd5eb1e38b7)
 )
 )
 
 ### Graphical Representation
-![Graphical Representation](![image](https://github.com/user-attachments/assets/9a886282-fc78-4729-b4a8-a3082516059e)
+![Graphical Representation](https://github.com/user-attachments/assets/9a886282-fc78-4729-b4a8-a3082516059e)
 )
-)
+
 
 ---
 
