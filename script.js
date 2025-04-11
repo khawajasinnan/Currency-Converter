@@ -1,4 +1,3 @@
-
 var input_amount = document.getElementById("original-currency-amount");
 var from_currency = document.getElementById("from_currency");
 var to_currency = document.getElementById("to_currency");
@@ -179,7 +178,6 @@ async function getHistoricalRates(fromCurrency, toCurrency) {
     const dates = [];
     const rates = [];
 
-    // Get rates for the past 7 days
     for (let i = 6; i >= 0; i--) {
         const date = new Date(today);
         date.setDate(date.getDate() - i);
@@ -191,9 +189,7 @@ async function getHistoricalRates(fromCurrency, toCurrency) {
         const response = await fetch(`https://v6.exchangerate-api.com/v6/b88b5967d64b35931fb025f7/latest/${fromCurrency}`);
         const data = await response.json();
         const rate = data.conversion_rates[toCurrency];
-        
-        // Simulate historical data with small variations
-        // (since the free API doesn't provide historical data)
+    
         rates.push(...dates.map(() => {
             const variation = (Math.random() - 0.5) * 0.1; // ±5% variation
             return (rate * (1 + variation)).toFixed(4);
@@ -206,7 +202,7 @@ async function getHistoricalRates(fromCurrency, toCurrency) {
     }
 }
 
-let rateChart = null; // Store chart instance globally
+let rateChart = null; 
 
 async function updateChart(fromCurrency, toCurrency) {
     const { dates, rates } = await getHistoricalRates(fromCurrency, toCurrency);
@@ -226,8 +222,8 @@ async function updateChart(fromCurrency, toCurrency) {
             datasets: [{
                 label: `${fromCurrency} to ${toCurrency} Exchange Rate`,
                 data: rates,
-                borderColor: '#ffd662ff',
-                backgroundColor: 'rgba(255, 214, 98, 0.2)',
+                borderColor: '#0000',
+                backgroundColor: 'rgba(251, 255, 255, 0.26)',
                 borderWidth: 2,
                 tension: 0.4,
                 fill: true

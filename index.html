@@ -1,9 +1,6 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>currency-convertor</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -13,12 +10,27 @@
     <link rel="icon" href="CurrencyConverter-logo.jpg">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="index.html">
+                <i class="fas fa-dollar-sign"></i> Currency Converter
+            </a>
+        </div>
+        <div class="navbar-links">
+            <a href="chart.html">
+                <i class="fas fa-chart-line"></i> Currency Evolution
+            </a>
+            <a href="conversionHistory.html">
+                <i class="fas fa-history"></i> Conversion History
+            </a>
+        </div>
+    </nav>
 
     <h1>Currency Converter</h1>
-    <p>I Can Convert Any Currency You Want With Real Time Exchanges :)</p>
+    <p>I Can Convert Any Currency You Want With Real Time Exchanges :) </p>
     <p class="convert">
         Convert :
-        <input  id="original-currency-amount" placeholder="Enter Amount" > </input>
+        <input  id="original-currency-amount" placeholder="Enter Amount" ></input>
     </p>
     <div>
         <select id="from_currency">
@@ -38,7 +50,7 @@
             <option value="DOP">DOP</option>
             <option value="EGP">EGP</option>
             <option value="EUR">EUR</option>
-            <option value="FJD">FJD</option>
+            <option value="FJD">FJD</option> 
             <option value="GBP">GBP</option>
             <option value="GTQ">GTQ</option>
             <option value="HKD">HKD</option>
@@ -142,9 +154,6 @@
     <p id="output-text">
         <span id="from"></span> converted to <span id="to"></span>
     </p>
-   <h3 style="color: white;">Currency Evolution (Past Week)</h3>
-   <canvas id="rateChart"></canvas>
-
     <div class="hist">
         <a href="conversionHistory.html">Conversion History</a>
 </div>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Evolution</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="index.html">
+                <i class="fas fa-dollar-sign"></i> Currency Converter
+            </a>
+        </div>
+        <div class="navbar-links">
+            <a href="chart.html" class="active">
+                <i class="fas fa-chart-line"></i> Currency Evolution
+            </a>
+            <a href="conversionHistory.html">
+                <i class="fas fa-history"></i> Conversion History
+            </a>
+        </div>
+    </nav>
+
+    <h1>Currency Evolution</h1>
+    <p>Track currency rates over time</p>
+
+    <div class="chart-controls">
+        <select id="base_currency"></select>
+        <select id="target_currency"></select>
+        <select id="time_range">
+            <option value="7">Past Week</option>
+            <option value="30">Past Month</option>
+            <option value="90">Past 3 Months</option>
+            <option value="180">Past 6 Months</option>
+            <option value="365">Past Year</option>
+        </select>
+    </div>
+
+    <div id="Chart">
+        <canvas id="rateChart"></canvas>
+    </div>
+
+    <script src="chart.js"></script>
+</body>
+</html>
