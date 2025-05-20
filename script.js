@@ -6,13 +6,16 @@ var exchange = document.getElementById("exchange");
 var output_amount = document.getElementById("output-text");
 var output_from = document.getElementById("from");
 var output_to = document.getElementById("to");
+var convert_button = document.getElementById("exchange_button");
 
+// Add event listener for convert button
+convert_button.addEventListener("click", calculate);
+
+// Add event listener for exchange button
 exchange.addEventListener("click", () => {
     [from_currency.value, to_currency.value] = [to_currency.value, from_currency.value];
     calculate();
 });
-
-var to_amount = 0;
 
 function validateInput() {
     if (input_amount.value <= 0 || isNaN(input_amount.value)) {
@@ -22,69 +25,68 @@ function validateInput() {
     return true;
 }
 
-function calculate() {
-    if (!validateInput()) return;
+function saveToHistory(from_currency_value, to_currency_value, amount, result, rate) {
+    try {
+        console.log('=== Starting saveToHistory ===');
+        console.log('Input values:', {
+            from: from_currency_value,
+            to: to_currency_value,
+            amount: amount,
+            result: result,
+            rate: rate
+        });
 
-    const from_currency_value = from_currency.value;
-    const to_currency_value = to_currency.value;
-
-    fetch(`https://v6.exchangerate-api.com/v6/b88b5967d64b35931fb025f7/latest/${from_currency_value}`)
-        .then(res => res.json())
-        .then(res => {
-            const rate = res.conversion_rates[to_currency_value];
-            exchange_rate.value = `${rate}`;
-            to_amount = (input_amount.value * rate).toFixed(3);
-            output_from.innerText = `${input_amount.value} ${from_currency_value}`;
-            output_to.innerText = `${to_amount} ${to_currency_value}`;
-            output_amount.style.display = "block";
-
-            const historyEntry = {
-                timestamp: new Date().toLocaleString(),
-                from: from_currency_value,
-                to: to_currency_value,
-                amount: input_amount.value,
-                result: to_amount,
-                rate: rate
-            };
-            
-            let history = [];
+        // Get existing history
+        let history = [];
+        const existingHistory = localStorage.getItem('conversionHistory');
+        console.log('Existing history from localStorage:', existingHistory);
+        
+        if (existingHistory) {
             try {
-                const existingHistory = localStorage.getItem('conversionHistory');
-                history = existingHistory ? JSON.parse(existingHistory) : [];
-            } catch (e) {
+                history = JSON.parse(existingHistory);
+                console.log('Successfully parsed existing history:', history);
+            } catch (parseError) {
+                console.error('Error parsing existing history:', parseError);
                 history = [];
             }
-            
-            history.push(historyEntry);
-            localStorage.setItem('conversionHistory', JSON.stringify(history));
+        }
 
-            updateChart(from_currency_value, to_currency_value);
+        // Create new conversion entry
+        const conversion = {
+            timestamp: new Date().toLocaleString(),
+            from: from_currency_value,
+            to: to_currency_value,
+            amount: parseFloat(amount).toFixed(2),
+            result: parseFloat(result).toFixed(2),
+            rate: parseFloat(rate).toFixed(4)
+        };
+        console.log('New conversion entry:', conversion);
+        
+        // Add to history
+        history.push(conversion);
+        console.log('Updated history array:', history);
+        
+        // Save to localStorage
+        const historyString = JSON.stringify(history);
+        console.log('Saving to localStorage:', historyString);
+        localStorage.setItem('conversionHistory', historyString);
+        
+        // Verify save
+        const savedHistory = localStorage.getItem('conversionHistory');
+        console.log('Verified saved history:', savedHistory);
+        
+        // Update history display if we're on the history page
+        if (document.getElementById('history-list')) {
+            console.log('History list element found, updating display');
             displayHistory();
-        })
-        .catch(err => {
-            console.error(err);
-            alert('Error fetching exchange rate. Please try again later.');
-        });
-}
-
-document.getElementById("exchange_button").addEventListener("click", () => {
-    if (validateInput()) {
-        calculate();
+        } else {
+            console.log('History list element not found, skipping display update');
+        }
+        
+        console.log('=== saveToHistory completed successfully ===');
+    } catch (error) {
+        console.error('Error in saveToHistory:', error);
     }
-});
-
-function saveToHistory(from_currency_value, to_currency_value, amount, result) {
-    const history = JSON.parse(localStorage.getItem('history')) || [];
-    const conversion = {
-        timestamp: new Date().toLocaleString(),
-        from: from_currency_value,
-        to: to_currency_value,
-        amount: amount,
-        result: result
-    };
-    history.push(conversion);
-    localStorage.setItem('history', JSON.stringify(history));
-    displayHistory();
 }
 
 function displayHistory() {
@@ -95,29 +97,38 @@ function displayHistory() {
         const history = JSON.parse(localStorage.getItem('conversionHistory')) || [];
         
         if (history.length === 0) {
-            historyList.innerHTML = '<tr><td colspan="5">No conversion history available</td></tr>';
+            historyList.innerHTML = '<tr><td colspan="6">No conversion history available</td></tr>';
             return;
         }
 
-        historyList.innerHTML = history.reverse().map(item => `
+        // Sort history by timestamp in descending order (newest first)
+        const sortedHistory = history.sort((a, b) => {
+            return new Date(b.timestamp) - new Date(a.timestamp);
+        });
+
+        historyList.innerHTML = sortedHistory.map(item => `
             <tr>
                 <td>${item.timestamp}</td>
                 <td>${item.from}</td>
                 <td>${item.to}</td>
                 <td>${item.amount}</td>
                 <td>${item.result}</td>
+                <td>${item.rate}</td>
             </tr>
         `).join('');
     } catch (e) {
         console.error('Error displaying history:', e);
-        historyList.innerHTML = '<tr><td colspan="5">Error loading conversion history</td></tr>';
+        historyList.innerHTML = '<tr><td colspan="6">Error loading conversion history</td></tr>';
     }
 }
 
+// Add clear history functionality
 if (document.getElementById('clear-history')) {
     document.getElementById('clear-history').addEventListener('click', () => {
-        localStorage.removeItem('conversionHistory');
-        displayHistory();
+        if (confirm('Are you sure you want to clear all conversion history?')) {
+            localStorage.removeItem('conversionHistory');
+            displayHistory();
+        }
     });
 }
 
@@ -126,9 +137,63 @@ window.onload = () => {
         setLanguage('en');
         loadGraph(from_currency.value, to_currency.value);
     }
-    
     displayHistory();
 };
+
+function calculate() {
+    if (!validateInput()) return;
+
+    const from_currency_value = from_currency.value;
+    const to_currency_value = to_currency.value;
+    const amount = input_amount.value;
+
+    // Add loading state
+    convert_button.disabled = true;
+    convert_button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Converting...';
+
+    // Using a free API endpoint
+    fetch(`https://api.exchangerate-api.com/v4/latest/${from_currency_value}`)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return res.json();
+        })
+        .then(res => {
+            const rate = res.rates[to_currency_value];
+            if (!rate) {
+                throw new Error('Invalid currency pair');
+            }
+            
+            const convertedAmount = (amount * rate).toFixed(2);
+            exchange_rate.value = rate.toFixed(4);
+            
+            // Update the output display
+            output_from.textContent = `${amount} ${from_currency_value}`;
+            output_to.textContent = `${convertedAmount} ${to_currency_value}`;
+            
+            // Show output with animation
+            output_amount.style.display = "block";
+            output_amount.classList.add('visible');
+            
+            // Save to history
+            saveToHistory(from_currency_value, to_currency_value, amount, convertedAmount, rate);
+            
+            // Update chart
+            updateChart(from_currency_value, to_currency_value);
+        })
+        .catch(err => {
+            console.error('Error:', err);
+            alert('Error fetching exchange rate. Please try again later.');
+            output_amount.style.display = "none";
+            exchange_rate.value = "";
+        })
+        .finally(() => {
+            // Reset button state
+            convert_button.disabled = false;
+            convert_button.innerHTML = '<i class="fas fa-sync-alt"></i> Convert Now';
+        });
+}
 
 function loadGraph(from_currency_value, to_currency_value) {
     const startDate = new Date();
@@ -171,8 +236,6 @@ function loadGraph(from_currency_value, to_currency_value) {
         .catch(err => alert('Error fetching historical data.'));
 }
 
-
-
 async function getHistoricalRates(fromCurrency, toCurrency) {
     const today = new Date();
     const dates = [];
@@ -205,16 +268,26 @@ async function getHistoricalRates(fromCurrency, toCurrency) {
 let rateChart = null; 
 
 async function updateChart(fromCurrency, toCurrency) {
+    const canvas = document.getElementById('rateChart');
+    if (!canvas) {
+        console.warn('Chart canvas element not found. Skipping chart update.');
+        return;
+    }
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) {
+        console.error('Could not get 2D context from canvas');
+        return;
+    }
+
     const { dates, rates } = await getHistoricalRates(fromCurrency, toCurrency);
-    
-    const ctx = document.getElementById('rateChart').getContext('2d');
     
     // Destroy existing chart if it exists
     if (rateChart) {
         rateChart.destroy();
     }
 
-    // Create new chart
+    // Create new chart with updated colors
     rateChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -222,11 +295,15 @@ async function updateChart(fromCurrency, toCurrency) {
             datasets: [{
                 label: `${fromCurrency} to ${toCurrency} Exchange Rate`,
                 data: rates,
-                borderColor: '#0000',
-                backgroundColor: 'rgba(251, 255, 255, 0.26)',
-                borderWidth: 2,
+                borderColor: '#1E40AF',
+                backgroundColor: 'rgba(30, 64, 175, 0.2)',
+                borderWidth: 3,
                 tension: 0.4,
-                fill: true
+                fill: true,
+                pointBackgroundColor: '#1E40AF',
+                pointBorderColor: '#ffffff',
+                pointRadius: 4,
+                pointHoverRadius: 6
             }]
         },
         options: {
@@ -235,26 +312,47 @@ async function updateChart(fromCurrency, toCurrency) {
             plugins: {
                 legend: {
                     labels: {
-                        color: 'white'
+                        color: '#1E40AF',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
                     }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    titleColor: '#1E40AF',
+                    bodyColor: '#4B5563',
+                    borderColor: '#1E40AF',
+                    borderWidth: 1,
+                    padding: 10,
+                    displayColors: false
                 }
             },
             scales: {
                 y: {
                     beginAtZero: false,
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.1)'
+                        color: 'rgba(30, 64, 175, 0.1)',
+                        drawBorder: false
                     },
                     ticks: {
-                        color: 'white'
+                        color: '#1E40AF',
+                        font: {
+                            size: 12
+                        }
                     }
                 },
                 x: {
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.1)'
+                        color: 'rgba(30, 64, 175, 0.1)',
+                        drawBorder: false
                     },
                     ticks: {
-                        color: 'white'
+                        color: '#1E40AF',
+                        font: {
+                            size: 12
+                        }
                     }
                 }
             }
@@ -262,18 +360,27 @@ async function updateChart(fromCurrency, toCurrency) {
     });
 }
 
-from_currency.addEventListener('change', () => {
-    if (input_amount.value) {
-        calculate();
+input_amount.addEventListener('input', function() {
+    if (this.value < 0) {
+        this.classList.add('error');
+    } else {
+        this.classList.remove('error');
     }
 });
 
-to_currency.addEventListener('change', () => {
-    if (input_amount.value) {
-        calculate();
-    }
+from_currency.addEventListener('change', function() {
+    this.classList.add('changed');
+    setTimeout(() => this.classList.remove('changed'), 300);
+});
+
+to_currency.addEventListener('change', function() {
+    this.classList.add('changed');
+    setTimeout(() => this.classList.remove('changed'), 300);
 });
 
 window.addEventListener('load', () => {
-    updateChart(from_currency.value, to_currency.value);
+    const canvas = document.getElementById('rateChart');
+    if (canvas) {
+        updateChart(from_currency.value, to_currency.value);
+    }
 });

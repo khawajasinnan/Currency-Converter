@@ -20,6 +20,7 @@ function populateCurrencyDropdowns() {
 
 // Initialize chart
 let rateChart;
+// Update the chart initialization with better colors
 function initializeChart() {
     const canvas = document.getElementById('rateChart');
     if (!canvas) {
@@ -29,7 +30,6 @@ function initializeChart() {
 
     const ctx = canvas.getContext('2d');
     
-    // Set explicit canvas dimensions
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
     
@@ -44,13 +44,15 @@ function initializeChart() {
             datasets: [{
                 label: 'Exchange Rate',
                 data: [],
-                borderColor: 'white',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                borderWidth: 2,
+                borderColor: '#1E40AF',
+                backgroundColor: 'rgba(30, 64, 175, 0.2)',
+                borderWidth: 3,
                 tension: 0.4,
                 fill: true,
                 pointRadius: 4,
-                pointHoverRadius: 6
+                pointHoverRadius: 6,
+                pointBackgroundColor: '#1E40AF',
+                pointBorderColor: '#ffffff'
             }]
         },
         options: {
@@ -61,35 +63,51 @@ function initializeChart() {
                     display: true,
                     position: 'top',
                     labels: {
-                        color: '#ffffff',
+                        color: '#1E40AF',
                         font: {
                             size: 14,
-                            weight: 'bold'
+                            weight: 'bold',
+                            family: "'Inter', sans-serif"
                         },
                         padding: 20
                     }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    titleColor: '#1E40AF',
+                    bodyColor: '#4B5563',
+                    borderColor: '#1E40AF',
+                    borderWidth: 1,
+                    padding: 10,
+                    displayColors: false
                 }
             },
             scales: {
                 x: {
                     display: true,
                     grid: {
-                        color: '#404040',
+                        color: 'rgba(30, 64, 175, 0.1)',
                         drawBorder: false
                     },
                     ticks: {
-                        color: '#ffffff',
-                        maxRotation: 45
+                        color: '#1E40AF',
+                        maxRotation: 45,
+                        font: {
+                            family: "'Inter', sans-serif"
+                        }
                     }
                 },
                 y: {
                     display: true,
                     grid: {
-                        color: '#404040',
+                        color: 'rgba(30, 64, 175, 0.1)',
                         drawBorder: false
                     },
                     ticks: {
-                        color: '#ffffff',
+                        color: '#1E40AF',
+                        font: {
+                            family: "'Inter', sans-serif"
+                        },
                         callback: function(value) {
                             return value.toFixed(2);
                         }

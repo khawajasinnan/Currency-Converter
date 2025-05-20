@@ -25,23 +25,34 @@
         </div>
     </nav>
 
-    <h1>Currency Evolution</h1>
-    <p>Track currency rates over time</p>
+    <div class="glass-card">
+        <h1>Currency Evolution</h1>
+        <p>Track currency rates over time</p>
 
-    <div class="chart-controls">
-        <select id="base_currency"></select>
-        <select id="target_currency"></select>
-        <select id="time_range">
-            <option value="7">Past Week</option>
-            <option value="30">Past Month</option>
-            <option value="90">Past 3 Months</option>
-            <option value="180">Past 6 Months</option>
-            <option value="365">Past Year</option>
-        </select>
-    </div>
+        <div class="chart-controls">
+            <div class="currency-select">
+                <label for="base_currency">Base Currency</label>
+                <select id="base_currency"></select>
+            </div>
+            <div class="currency-select">
+                <label for="target_currency">Target Currency</label>
+                <select id="target_currency"></select>
+            </div>
+            <div class="currency-select">
+                <label for="time_range">Time Range</label>
+                <select id="time_range">
+                    <option value="7">Past Week</option>
+                    <option value="30">Past Month</option>
+                    <option value="90">Past 3 Months</option>
+                    <option value="180">Past 6 Months</option>
+                    <option value="365">Past Year</option>
+                </select>
+            </div>
+        </div>
 
-    <div id="Chart">
-        <canvas id="rateChart"></canvas>
+        <div id="Chart">
+            <canvas id="rateChart"></canvas>
+        </div>
     </div>
 
     <script src="chart.js"></script>

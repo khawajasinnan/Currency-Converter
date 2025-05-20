@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversion History</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,13 +15,19 @@
             </a>
         </div>
         <div class="navbar-links">
-            <a href="conversionHistory.html">
+            <a href="chart.html">
+                <i class="fas fa-chart-line"></i> Currency Evolution
+            </a>
+            <a href="conversionHistory.html" class="active">
                 <i class="fas fa-history"></i> Conversion History
             </a>
         </div>
     </nav>
-    <div id="conversion-history">
-        <h3>Conversion History</h3>
+
+    <div class="glass-card">
+        <h1>Conversion History</h1>
+        <p>View your recent currency conversions</p>
+
         <div class="table-container">
             <table id="history-table">
                 <thead>
@@ -30,17 +37,26 @@
                         <th>To</th>
                         <th>Amount</th>
                         <th>Result</th>
+                        <th>Rate</th>
                     </tr>
                 </thead>
                 <tbody id="history-list">
+                    <!-- History will be loaded here -->
                 </tbody>
             </table>
         </div>
-        <button id="clear-history">Clear History</button>
+
+        <button id="clear-history" class="primary-btn">
+            <i class="fas fa-trash-alt"></i> Clear History
+        </button>
     </div>
-    <div class="back">
-        <a href="index.html">Back to Converter</a>
+
+    <div class="back glass-card">
+        <a href="index.html">
+            <i class="fas fa-arrow-left"></i> Back to Converter
+        </a>
     </div>
+
     <script src="historyScript.js"></script>
 </body>
 </html>
