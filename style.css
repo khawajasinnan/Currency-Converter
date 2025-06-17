@@ -136,6 +136,100 @@ p, label, span {
 .currency-select[data-currency="VND"]::before { background-image: url('https://flagcdn.com/w40/vn.png'); }
 .currency-select[data-currency="ZAR"]::before { background-image: url('https://flagcdn.com/w40/za.png'); }
 
+/* General Form Styling */
+.form-group {
+  margin-bottom: 1rem;
+  text-align: left; /* Align labels to the left */
+}
+
+.form-group label {
+  display: block; /* Labels on their own line */
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #1E40AF; /* Adjust to your color scheme */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%; /* Make inputs fill container */
+  padding: 0.75rem;
+  border: 1px solid #D1D5DB; /* Adjust to your color scheme */
+  border-radius: 0.375rem; /* Rounded corners */
+  box-sizing: border-box; /* Include padding in width */
+  font-size: 1rem;
+  color: #4B5563; /* Adjust to your color scheme */
+  background-color: #FFFFFF; /* White background */
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-group input:focus {
+  border-color: #1E40AF; /* Highlight color on focus */
+  box-shadow: 0 0 0 0.25rem rgba(30, 64, 175, 0.25); /* Focus ring */
+  outline: none;
+}
+
+/* Error and Success Messages */
+.error-message {
+  color: #EF4444; /* Red */
+  font-size: 0.875rem; /* Small text */
+  margin-top: 0.25rem;
+  display: block; /* Always display the space, hide with style="display: none;" */
+  min-height: 1.2em; /* Reserve space even when empty */
+}
+
+.success-message {
+  color: #10B981; /* Green */
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+  min-height: 1.2em;
+}
+
+/* Link Styling within forms */
+.glass-card p a {
+  color: #1E40AF; /* Adjust link color */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.glass-card p a:hover {
+  text-decoration: underline;
+}
+
+/* Adjust primary button margin if needed within the form context */
+#signup-form .primary-btn,
+#login-form .primary-btn,
+#request-reset-form .primary-btn,
+#reset-password-form .primary-btn {
+  margin-top: 1.5rem; /* Space above the button */
+  width: 100%; /* Button fills the container */
+}
+
+/* Basic Page Message Styling (for verify.html, etc.) */
+#verification-message,
+#verification-error,
+#verification-success {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+#login-link {
+   text-align: center;
+   margin-top: 1.5rem;
+}
+
+#login-link a {
+   color: #1E40AF;
+   text-decoration: none;
+   font-weight: 500;
+}
+
+#login-link a:hover {
+  text-decoration: underline;
+}
+
 /* Input Styling */
 #original-currency-amount {
   width: 300px !important;
@@ -337,7 +431,12 @@ button:hover, select:hover, input:hover {
     width: 250px;
   }
 }
-
+.error-message {
+  color: #EF4444;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  display: block;
+}
 /* Animations */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -1201,6 +1300,7 @@ button:active, select:active {
 #output-text.visible {
   opacity: 1;
   transform: translateY(0);
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
 }
 
 /* History Link */
@@ -1484,4 +1584,431 @@ button:hover {
   .chart-controls select {
     font-size: 0.875rem;
   }
+}
+
+/* Small icon button for navbar logout */
+.icon-btn {
+    background: none;
+    border: none;
+    color: #1E40AF;
+    font-size: 1.5rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: none;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon-btn:hover {
+    background: #e0e7ff;
+    color: #EF4444;
+    box-shadow: 0 2px 8px rgba(30, 64, 175, 0.08);
+}
+
+/* Login Card Styling */
+.login-card {
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 2.5rem 2rem 2rem 2rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 6px 32px rgba(30, 64, 175, 0.10);
+    background: rgba(255,255,255,0.85);
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #1E40AF;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.login-btn {
+    width: 100%;
+    margin-top: 1.2rem;
+    font-size: 1.1rem;
+    padding: 0.7rem 0;
+    border-radius: 0.7rem;
+    background: linear-gradient(90deg, #2563EB 60%, #1E40AF 100%);
+    color: #fff;
+    border: none;
+    transition: background 0.2s;
+}
+
+.login-btn:hover {
+    background: linear-gradient(90deg, #1E40AF 60%, #2563EB 100%);
+    color: #fff;
+}
+
+.form-group {
+    margin-bottom: 1.1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #1E293B;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.6rem 0.9rem;
+    border-radius: 0.5rem;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    font-size: 1rem;
+    transition: border 0.2s;
+}
+
+.form-group input:focus {
+    border: 1.5px solid #2563EB;
+    outline: none;
+}
+
+.prompt {
+    margin-top: 1.2rem;
+    text-align: center;
+    color: #64748B;
+    font-size: 0.97rem;
+}
+
+/* Navbar Flex Layout */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-links {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar-logout {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* Login Prompts Styling */
+.login-prompts {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: stretch;
+    width: 100%;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.info-box {
+    background: #f8fafc;
+    color: #1e40af;
+    border-left: 4px solid #2563eb;
+    border-radius: 0.8rem;
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-height: 48px;
+    margin-bottom: 0.2rem;
+    box-shadow: 0 2px 8px rgba(30, 64, 175, 0.04);
+}
+.imp-text{
+    color: #1e293b;
+    font-weight: 500;
+    font-size: 1rem;
+}
+.info-box i {
+    font-size: 1.3rem;
+    color: #2563eb;
+    flex-shrink: 0;
+}
+
+.info-box span {
+    flex: 1;
+    color: #1e293b;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.resend-link {
+    margin-left: 0.7rem;
+    color: #1e40af;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.2s;
+    white-space: nowrap;
+}
+
+.resend-link:hover {
+    color: #ef4444;
+}
+
+.signup-prompt {
+    color: #64748B;
+    font-size: 1.08rem;
+    text-align: center;
+    padding: 0.7rem 0 0.2rem 0;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.signup-link {
+    color: #2563eb;
+    font-weight: 700;
+    margin-left: 0.4rem;
+    text-decoration: none;
+    font-size: 1.08rem;
+    transition: color 0.2s;
+}
+
+.signup-link:hover {
+    color: #1e40af;
+    text-decoration: underline;
+}
+
+/* Login Prompts Styling */
+.login-prompts {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: center;
+}
+
+.info-box {
+    background: #f1f5f9;
+    color: #2563eb;
+    border-left: 4px solid #2563eb;
+    border-radius: 0.5rem;
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-box i {
+    font-size: 1.2rem;
+    color: #2563eb;
+}
+
+.resend-link {
+    margin-left: 0.5rem;
+    color: #1e40af;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.resend-link:hover {
+    color: #ef4444;
+}
+
+.signup-prompt {
+    color: #64748B;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.signup-link {
+    color: #2563eb;
+    font-weight: 600;
+    margin-left: 0.3rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.signup-link:hover {
+    color: #1e40af;
+    text-decoration: underline;
+}
+
+/* Clean, modern login prompts inside card */
+.login-prompts {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: stretch;
+    width: 100%;
+}
+
+.info-box {
+    background: #f8fafc;
+    color: #1e40af;
+    border-left: 4px solid #2563eb;
+    border-radius: 0.7rem;
+    padding: 0.8rem 1.1rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-height: 44px;
+    margin-bottom: 0.2rem;
+    box-shadow: 0 2px 8px rgba(30, 64, 175, 0.04);
+}
+
+.info-box i {
+    font-size: 1.2rem;
+    color: #2563eb;
+    flex-shrink: 0;
+}
+
+.info-box span {
+    flex: 1;
+    color: #1e293b;
+    font-weight: 500;
+}
+
+.resend-link {
+    margin-left: 0.7rem;
+    color: #1e40af;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.2s;
+    white-space: nowrap;
+}
+
+.resend-link:hover {
+    color: #ef4444;
+}
+
+.signup-prompt {
+    color: #64748B;
+    font-size: 1rem;
+    text-align: center;
+    padding: 0.5rem 0 0.2rem 0;
+    font-weight: 500;
+}
+
+.signup-link {
+    color: #2563eb;
+    font-weight: 700;
+    margin-left: 0.4rem;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.signup-link:hover {
+    color: #1e40af;
+    text-decoration: underline;
+}
+
+/* Modern Login Prompts Styling */
+.login-prompts {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.info-box {
+    background: #f8fafc;
+    border-left: 4px solid #2563eb;
+    border-radius: 0.7rem;
+    padding: 0.7rem 1.1rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 44px;
+    box-shadow: 0 2px 8px rgba(30, 64, 175, 0.04);
+    margin-bottom: 0.2rem;
+    gap: 1rem;
+}
+
+.info-main {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #2563eb;
+    font-weight: 500;
+}
+
+.info-main i {
+    font-size: 15px;
+    color: #2563eb;
+    flex-shrink: 0;
+}
+
+.info-main span {
+    color: #1e293b;
+    font-size: 15px;
+}
+
+.resend-link {
+    color: #1e40af;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 0.98rem;
+    transition: color 0.2s;
+    white-space: nowrap;
+    margin-left: 1rem;
+}
+
+.resend-link:hover {
+    color: #ef4444;
+}
+
+.signup-prompt {
+    color: #64748B;
+    font-size: 17px;
+    text-align: center;
+    padding: 0.5rem 0 0.2rem 0;
+}
+
+.signup-link {
+    color: #2563eb;
+    font-weight: 700;
+    margin-left: 0.4rem;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.signup-link:hover {
+    color: #1e40af;
+    text-decoration: underline;
+}
+
+.error-message {
+    color: #ef4444;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1rem;
+    margin: 0.8rem 0 0.2rem 0;
+    font-size: 1rem;
+    text-align: center;
+    display: none;
 }

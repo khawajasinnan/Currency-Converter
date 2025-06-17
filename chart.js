@@ -204,3 +204,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error during initialization:', error);
     }
 });
+const logoutBtn = document.getElementById('logout-btn');
+if (logoutBtn) {
+  logoutBtn.onclick = function() {
+    localStorage.removeItem('currentUserToken');
+    localStorage.removeItem('currentUser');
+    window.location.href = 'login.html';
+  };
+}
