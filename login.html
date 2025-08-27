@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="glass-card login-card">
+        <h1 class="login-title"><i class="fas fa-sign-in-alt"></i> Login</h1>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" placeholder="Enter password" required>
+            </div>
+            <div id="login-error" class="error-message" style="display:none;"></div>
+            <button type="submit" class="primary-btn login-btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+        </form>
+        <div class="login-prompts">
+            <div class="info-box">
+                <i class="fas fa-info-circle"></i>
+                <span class="imp-text">Please verify your email.</span>
+                <a href="#" id="resendVerificationLink" class="resend-link">Resend Verification Email</a>
+            </div>
+            <div class="signup-prompt">
+                <span class="imp-text">Don’t have an account?</span>
+                <a href="signup.html" class="signup-link">Sign Up</a>
+            </div>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>

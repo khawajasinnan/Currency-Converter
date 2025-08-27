@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Password Reset</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="glass-card">
+        <h1>Request Password Reset</h1>
+        <form id="request-reset-form">
+            <div class="form-group">
+                <label for="reset-email">Email</label>
+                <input type="email" id="reset-email" placeholder="Enter your email" required>
+            </div>
+            <button type="submit" class="primary-btn">Send Reset Link</button>
+        </form>
+        <div id="request-reset-error" class="error-message" style="display: none;"></div>
+        <div id="request-reset-success" class="success-message" style="display: none;"></div>
+        <p><a href="login.html">Back to Login</a></p>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>
